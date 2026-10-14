@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jasmine & Honey Skin — Holistic Skincare & Clinical Glow in Jacksonville, FL</title>
+  <meta name="description" content="Jasmine & Honey Skin by Jasmine McCormick. Tailored clinical facials, lash enhancements, and barrier-restoring treatments in Jacksonville, FL. Aveda Institute trained.">
+  
+  <!-- Google Fonts: Cormorant Garamond (Editorial Luxury) + Plus Jakarta Sans (Modern Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            accent: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            honey: {
+              50: '#FDFCF7',
+              100: '#FAF4E5',
+              200: '#F4E5BF',
+              300: '#EBD292',
+              400: '#DFBC65',
+              500: '#CF9E38',
+              600: '#AD7B24',
+              700: '#845B18',
+              800: '#5C3E10',
+              900: '#3D2808',
+            },
+            cream: {
+              50: '#FAF9F6',
+              100: '#F5F2EB',
+              200: '#EAE4D7',
+              300: '#DDD3C0',
+              900: '#26221A',
+            },
+            espresso: {
+              900: '#1C1917',
+              950: '#141210',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 40px -10px rgba(61, 40, 8, 0.05)',
+            'card': '0 20px 45px -15px rgba(61, 40, 8, 0.08)',
+            'glow': '0 0 40px rgba(223, 188, 101, 0.22)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF9F6;
+      color: #26221A;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    .font-serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(223, 188, 101, 0.22);
+    }
+    .gradient-honey {
+      background: linear-gradient(135deg, #FDF8ED 0%, #F5E5BF 50%, #FAF2EB 100%);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-honey-200 selection:text-honey-900">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-espresso-900 text-honey-200 text-xs py-2.5 px-4 text-center tracking-wide font-medium flex items-center justify-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-honey-400 animate-pulse"></span>
+    <span>Now Welcoming Treatment Guests in Jacksonville, FL • Aveda Institute Trained</span>
+    <span class="hidden md:inline text-honey-400/60">•</span>
+    <span class="hidden md:inline text-honey-300">Complimentary Skin Health Assessment With Every Facial</span>
+  </div>
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 bg-cream-50/90 backdrop-blur-md border-b border-cream-200/60 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="group flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-honey-100 border border-honey-300 flex items-center justify-center text-honey-700 shadow-soft group-hover:bg-honey-200 transition-colors">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span class="font-serif text-2xl tracking-wider text-espresso-900 font-semibold block leading-tight">JASMINE & HONEY</span>
+          <span class="text-[10px] tracking-[0.25em] text-honey-700 uppercase font-medium">Skin • Jacksonville, FL</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-cream-900/80">
+        <a href="#about" class="hover:text-honey-700 transition-colors">About Jasmine</a>
+        <a href="#treatments" class="hover:text-honey-700 transition-colors">Treatments & Menu</a>
+        <a href="#philosophy" class="hover:text-honey-700 transition-colors">Philosophy</a>
+        <a href="#contact" class="hover:text-honey-700 transition-colors">Location</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <button onclick="openModal()" class="inline-flex items-center gap-2 bg-espresso-900 hover:bg-honey-700 text-white text-xs md:text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 shadow-soft hover:shadow-glow">
+          <i data-lucide="calendar" class="w-4 h-4 text-honey-300"></i>
+          <span>Reserve Visit</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none opacity-40">
+      <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-honey-200/50 blur-3xl"></div>
+      <div class="absolute top-1/2 -left-32 w-80 h-80 rounded-full bg-cream-200/70 blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-honey-100 border border-honey-300/60 text-honey-800 text-xs font-semibold uppercase tracking-widest">
+            <i data-lucide="sun" class="w-3.5 h-3.5 text-honey-600"></i>
+            <span>The Treatment Chair Experience</span>
+          </div>
+
+          <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.08] text-espresso-900">
+            Gentle touch. <br>
+            <span class="italic font-light text-honey-600">Pure golden glow.</span>
+          </h1>
+
+          <p class="text-base md:text-lg text-cream-900/80 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+            Welcome to <strong class="text-espresso-900 font-semibold">Jasmine & Honey Skin</strong> by Jasmine McCormick. Tailored clinical facials, lash enhancements, and barrier-repair therapies crafted in Jacksonville, Florida with pure botanicals and Aveda Institute expertise.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <button onclick="openModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-espresso-900 hover:bg-honey-700 text-white font-medium px-8 py-3.5 rounded-full transition-all duration-300 shadow-card hover:shadow-glow text-sm">
+              <i data-lucide="sparkles" class="w-4 h-4 text-honey-300"></i>
+              <span>Book An Appointment</span>
+            </button>
+            <a href="#treatments" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/90 hover:bg-cream-100 text-espresso-900 border border-cream-200 px-7 py-3.5 rounded-full transition-colors text-sm font-medium shadow-soft">
+              <span>View Treatment Menu</span>
+              <i data-lucide="arrow-down" class="w-4 h-4 text-honey-600"></i>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="pt-8 border-t border-cream-200/80 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 text-left">
+            <div>
+              <span class="block font-serif text-2xl font-bold text-espresso-900">Aveda</span>
+              <span class="text-xs text-cream-900/70 font-medium">Institute Trained</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl font-bold text-espresso-900">100%</span>
+              <span class="text-xs text-cream-900/70 font-medium">Customized Plans</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl font-bold text-espresso-900">Jax, FL</span>
+              <span class="text-xs text-cream-900/70 font-medium">Boutique Studio</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Card Mockup -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-sm lg:max-w-none">
+            <div class="glass-card rounded-3xl p-6 shadow-card relative z-10 space-y-6">
+              
+              <!-- Aesthetic Profile Header -->
+              <div class="flex items-center gap-4 border-b border-cream-200/60 pb-5">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-honey-300 to-honey-100 flex items-center justify-center font-serif text-2xl text-honey-800 font-bold shadow-soft">
+                  JM
+                </div>
+                <div>
+                  <h3 class="font-serif text-xl font-bold text-espresso-900 leading-tight">Jasmine McCormick</h3>
+                  <p class="text-xs text-honey-700 font-medium">Aveda Esthetics Practitioner • Jacksonville, FL</p>
+                  <div class="flex items-center gap-1 text-honey-500 text-xs mt-1">
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-honey-400 text-honey-400"></i>
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-honey-400 text-honey-400"></i>
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-honey-400 text-honey-400"></i>
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-honey-400 text-honey-400"></i>
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-honey-400 text-honey-400"></i>
+                    <span class="text-cream-900/70 font-semibold ml-1">5.0 Glow Reviews</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Quote / Manifesto -->
+              <div class="bg-honey-50/80 rounded-2xl p-4 border border-honey-200/50">
+                <p class="font-serif italic text-base text-honey-900 leading-snug">
+                  "I love all things skincare and self-care. I can't wait to welcome you to the treatment chair and help you reach your truest skin goals."
+                </p>
+                <span class="text-[11px] text-honey-700 font-medium block mt-2 tracking-wide uppercase">— Jasmine Mccormick</span>
+              </div>
+
+              <!-- Service Highlights -->
+              <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/70 border border-cream-200/60 hover:border-honey-300 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-honey-100 text-honey-700 flex items-center justify-center">
+                      <i data-lucide="droplet" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-xs font-semibold text-espresso-900 block">Honey Signature Facial</span>
+                      <span class="text-[10px] text-cream-900/60">Double cleanse • Steam • Barrier mask</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-bold text-honey-700">$85</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/70 border border-cream-200/60 hover:border-honey-300 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-honey-100 text-honey-700 flex items-center justify-center">
+                      <i data-lucide="eye" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-xs font-semibold text-espresso-900 block">Lash Lift & Deep Tint</span>
+                      <span class="text-[10px] text-cream-900/60">Natural curl • Keratin infusion</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-bold text-honey-700">$65</span>
+                </div>
+              </div>
+
+              <button onclick="openModal()" class="w-full bg-honey-500 hover:bg-honey-600 text-white font-medium text-xs py-3 rounded-xl transition-colors tracking-wider uppercase font-semibold flex items-center justify-center gap-2">
+                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                <span>Check Available Appointments</span>
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid: The Jasmine Difference -->
+  <section id="about" class="py-20 bg-cream-100/60 border-y border-cream-200/70">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase font-semibold tracking-[0.2em] text-honey-700">Philosophy & Heart</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-normal text-espresso-900">Behind The Treatment Chair</h2>
+        <p class="text-cream-900/75 text-sm md:text-base leading-relaxed">
+          Skincare is not one-size-fits-all. Every visit is an unhurried, restorative ritual built around your skin's unique moisture barrier and daily rhythm.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Bento Item 1: Aveda Roots -->
+        <div class="glass-card p-8 rounded-3xl space-y-4 hover:shadow-card transition-all duration-300">
+          <div class="w-12 h-12 rounded-2xl bg-honey-100 text-honey-700 flex items-center justify-center">
+            <i data-lucide="leaf" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-espresso-900">Aveda Institute Roots</h3>
+          <p class="text-sm text-cream-900/80 leading-relaxed">
+            Formally trained at the world-renowned Aveda Institute, blending high-performance plant botanicals with modern dermatological science for lasting skin health.
+          </p>
+          <div class="text-xs font-semibold text-honey-700 flex items-center gap-1.5 pt-2">
+            <span>Plant-Powered Formulas</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Bento Item 2: Safe Barrier First -->
+        <div class="glass-card p-8 rounded-3xl space-y-4 hover:shadow-card transition-all duration-300">
+          <div class="w-12 h-12 rounded-2xl bg-honey-100 text-honey-700 flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-espresso-900">Barrier First Approach</h3>
+          <p class="text-sm text-cream-900/80 leading-relaxed">
+            No harsh stripping or aggressive abrasion. We nurture your microbiome, restore lipids, and calm inflammation so your skin naturally thrives without irritation.
+          </p>
+          <div class="text-xs font-semibold text-honey-700 flex items-center gap-1.5 pt-2">
+            <span>Anti-Inflammatory Protocols</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Bento Item 3: Local Jacksonville Sanctuary -->
+        <div class="glass-card p-8 rounded-3xl space-y-4 hover:shadow-card transition-all duration-300">
+          <div class="w-12 h-12 rounded-2xl bg-honey-100 text-honey-700 flex items-center justify-center">
+            <i data-lucide="map-pin" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-espresso-900">Jacksonville, Florida</h3>
+          <p class="text-sm text-cream-900/80 leading-relaxed">
+            A peaceful, private sanctuary in the heart of Jax. Designed for relaxation, warm conversation, and bespoke results that let you walk out with dewy, effortless skin.
+          </p>
+          <div class="text-xs font-semibold text-honey-700 flex items-center gap-1.5 pt-2">
+            <span>1-on-1 Dedicated Time</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Treatments Menu -->
+  <section id="treatments" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="space-y-3">
+          <span class="text-xs uppercase font-semibold tracking-[0.2em] text-honey-700">Curated Offerings</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-normal text-espresso-900">Signature Treatment Menu</h2>
+          <p class="text-cream-900/75 text-sm md:text-base max-w-xl">
+            Each facial includes deep double-cleansing, custom enzyme exfoliation, targeted serums, and soothing neck & shoulder lymphatic massage.
+          </p>
+        </div>
+
+        <button onclick="openModal()" class="inline-flex items-center gap-2 bg-espresso-900 hover:bg-honey-700 text-white font-medium text-xs px-6 py-3 rounded-full transition-colors self-start md:self-auto">
+          <span>Schedule A Custom Treatment</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Treatment 1 -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between hover:border-honey-400 transition-all duration-300">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-honey-100 text-honey-800 text-[11px] font-bold tracking-wider uppercase">Most Popular</span>
+              <span class="font-serif text-2xl font-bold text-espresso-900">$85</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-espresso-900">The Honey Glow Signature Facial</h3>
+            <p class="text-xs text-honey-700 font-medium">60 Minutes • All Skin Types</p>
+            <p class="text-sm text-cream-900/80 leading-relaxed">
+              Our flagship holistic treatment. Features warm honey enzymes, customized lymphatic drainage, high-frequency antibacterial therapy, and ultra-hydrating botanical mask.
+            </p>
+          </div>
+          <div class="pt-6 mt-4 border-t border-cream-200 flex items-center justify-between">
+            <span class="text-xs text-cream-900/60 font-medium">Includes skin barrier consultation</span>
+            <button onclick="selectService('Honey Glow Signature Facial', '$85')" class="text-xs font-bold text-honey-700 hover:text-espresso-900 flex items-center gap-1 group">
+              <span>Reserve</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Treatment 2 -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between hover:border-honey-400 transition-all duration-300">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-cream-200 text-espresso-900 text-[11px] font-bold tracking-wider uppercase">Restorative</span>
+              <span class="font-serif text-2xl font-bold text-espresso-900">$95</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-espresso-900">Barrier Repair & Deep Hydration</h3>
+            <p class="text-xs text-honey-700 font-medium">75 Minutes • Dry, Sensitive & Reactive Skin</p>
+            <p class="text-sm text-cream-900/80 leading-relaxed">
+              Formulated specifically for compromised, flaky, or inflamed barriers. Infuses skin with bio-identical ceramides, hyaluronic acid, and cooling jade stone therapy.
+            </p>
+          </div>
+          <div class="pt-6 mt-4 border-t border-cream-200 flex items-center justify-between">
+            <span class="text-xs text-cream-900/60 font-medium">Instant calm & redness reduction</span>
+            <button onclick="selectService('Barrier Repair & Deep Hydration', '$95')" class="text-xs font-bold text-honey-700 hover:text-espresso-900 flex items-center gap-1 group">
+              <span>Reserve</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Treatment 3 -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between hover:border-honey-400 transition-all duration-300">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-cream-200 text-espresso-900 text-[11px] font-bold tracking-wider uppercase">Eye Enhancement</span>
+              <span class="font-serif text-2xl font-bold text-espresso-900">$65</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-espresso-900">Lash Lift & Botanical Deep Tint</h3>
+            <p class="text-xs text-honey-700 font-medium">45 Minutes • Lasts 6-8 Weeks</p>
+            <p class="text-sm text-cream-900/80 leading-relaxed">
+              Elevate your natural gaze without mascara or extensions. Infused with strengthening keratin and nourishing oils for a wide-awake, luminous lift.
+            </p>
+          </div>
+          <div class="pt-6 mt-4 border-t border-cream-200 flex items-center justify-between">
+            <span class="text-xs text-cream-900/60 font-medium">Zero damage to natural lash line</span>
+            <button onclick="selectService('Lash Lift & Botanical Deep Tint', '$65')" class="text-xs font-bold text-honey-700 hover:text-espresso-900 flex items-center gap-1 group">
+              <span>Reserve</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Treatment 4 -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between hover:border-honey-400 transition-all duration-300">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-cream-200 text-espresso-900 text-[11px] font-bold tracking-wider uppercase">Smoothing</span>
+              <span class="font-serif text-2xl font-bold text-espresso-900">$90</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-espresso-900">Dermaplane Glow & Papaya Enzyme</h3>
+            <p class="text-xs text-honey-700 font-medium">60 Minutes • Immediate Radiance</p>
+            <p class="text-sm text-cream-900/80 leading-relaxed">
+              Precise manual exfoliation removing dead stratum corneum and peach fuzz. Allows active serums to penetrate 60% deeper and creates a flawless glass canvas.
+            </p>
+          </div>
+          <div class="pt-6 mt-4 border-t border-cream-200 flex items-center justify-between">
+            <span class="text-xs text-cream-900/60 font-medium">Flawless makeup & glass finish</span>
+            <button onclick="selectService('Dermaplane Glow & Papaya Enzyme', '$90')" class="text-xs font-bold text-honey-700 hover:text-espresso-900 flex items-center gap-1 group">
+              <span>Reserve</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-espresso-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-card border border-cream-200 relative animate-in fade-in zoom-in-95 duration-200">
+      
+      <button onclick="closeModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-cream-100 hover:bg-cream-200 flex items-center justify-center text-espresso-900 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-6 space-y-1">
+        <span class="text-[11px] uppercase font-bold tracking-widest text-honey-700">Online Reservation</span>
+        <h3 class="font-serif text-3xl font-bold text-espresso-900">Reserve Your Treatment</h3>
+        <p class="text-xs text-cream-900/70">Jasmine & Honey Skin • Studio in Jacksonville, FL</p>
+      </div>
+
+      <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-espresso-900 mb-1">Select Treatment</label>
+          <select id="modalService" class="w-full text-sm bg-cream-50 border border-cream-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-honey-500 font-medium">
+            <option value="Honey Glow Signature Facial ($85)">Honey Glow Signature Facial ($85)</option>
+            <option value="Barrier Repair & Deep Hydration ($95)">Barrier Repair & Deep Hydration ($95)</option>
+            <option value="Lash Lift & Botanical Deep Tint ($65)">Lash Lift & Botanical Deep Tint ($65)</option>
+            <option value="Dermaplane Glow & Papaya Enzyme ($90)">Dermaplane Glow & Papaya Enzyme ($90)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-espresso-900 mb-1">Preferred Date</label>
+            <input type="date" required class="w-full text-sm bg-cream-50 border border-cream-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-honey-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-espresso-900 mb-1">Preferred Time</label>
+            <select class="w-full text-sm bg-cream-50 border border-cream-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-honey-500">
+              <option>10:00 AM</option>
+              <option>11:30 AM</option>
+              <option>1:30 PM</option>
+              <option>3:00 PM</option>
+              <option>4:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-espresso-900 mb-1">Your Full Name</label>
+          <input type="text" placeholder="e.g. Sarah Jenkins" required class="w-full text-sm bg-cream-50 border border-cream-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-honey-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-espresso-900 mb-1">Phone / Text</label>
+            <input type="tel" placeholder="(904) 000-0000" required class="w-full text-sm bg-cream-50 border border-cream-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-honey-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-espresso-900 mb-1">Instagram (Optional)</label>
+            <input type="text" placeholder="@yourhandle" class="w-full text-sm bg-cream-50 border border-cream-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-honey-500">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-espresso-900 hover:bg-honey-700 text-white font-medium text-sm py-3.5 rounded-xl transition-all shadow-card mt-2 flex items-center justify-center gap-2">
+          <i data-lucide="check-circle" class="w-4 h-4 text-honey-300"></i>
+          <span>Confirm Booking Request</span>
+        </button>
+
+        <p class="text-[10px] text-center text-cream-900/60 pt-1">
+          No prepayment required. Jasmine will text/DM you to confirm your intake details.
+        </p>
+      </form>
+
+      <div id="bookingSuccess" class="hidden text-center py-8 space-y-4">
+        <div class="w-14 h-14 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto">
+          <i data-lucide="check" class="w-8 h-8"></i>
+        </div>
+        <h4 class="font-serif text-2xl font-bold text-espresso-900">Request Sent Successfully!</h4>
+        <p class="text-xs text-cream-900/80 max-w-xs mx-auto">
+          Thank you! Jasmine has received your booking inquiry and will confirm your Jacksonville appointment shortly.
+        </p>
+        <button onclick="closeModal()" class="text-xs font-bold text-honey-700 underline">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-espresso-950 text-cream-100 py-16 border-t border-espresso-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center justify-between">
+        
+        <div class="md:col-span-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-honey-400/20 border border-honey-400/40 flex items-center justify-center text-honey-300">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-wider text-white">JASMINE & HONEY SKIN</span>
+          </div>
+          <p class="text-xs text-cream-200/60 max-w-md leading-relaxed">
+            Clinical esthetics, customized facials, and natural lash enhancements. Aveda Institute trained practitioner based in Jacksonville, FL.
+          </p>
+        </div>
+
+        <div class="md:col-span-6 flex flex-col md:flex-row items-start md:items-center justify-end gap-6 text-xs text-cream-200/70">
+          <div class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-honey-400"></i>
+            <span>Jacksonville, FL</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="instagram" class="w-4 h-4 text-honey-400"></i>
+            <span>@jasmineandhoneyskin</span>
+          </div>
+          <button onclick="openModal()" class="bg-honey-500 hover:bg-honey-600 text-espresso-950 font-bold px-5 py-2.5 rounded-full transition-colors">
+            Book Now
+          </button>
+        </div>
+
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-cream-200/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-cream-200/40 gap-4">
+        <span>© 2026 Jasmine & Honey Skin. All rights reserved.</span>
+        <span>Concept Preview Designed by AI Lead Assistant</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function openModal() {
+      document.getElementById('bookingModal').classList.remove('hidden');
+      document.getElementById('bookingModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('flex');
+      document.getElementById('bookingForm').classList.remove('hidden');
+      document.getElementById('bookingSuccess').classList.add('hidden');
+    }
+
+    function selectService(name, price) {
+      const select = document.getElementById('modalService');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text.includes(name)) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      openModal();
+    }
+
+    function handleBooking(e) {
+      e.preventDefault();
+      document.getElementById('bookingForm').classList.add('hidden');
+      document.getElementById('bookingSuccess').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
